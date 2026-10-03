@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ridhira Retreats — Our Properties</title>
+<link rel="stylesheet" href="EXPERIENCES.css">
+<link rel="stylesheet" href="Destinations.css">
+<link rel="stylesheet" href="8-dimensions.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f0ebe0;
+    --cream-dark: #e6e0d4;
+    --sand: #d4c9b0;
+    --bark: #8b7355;
+    --earth: #5c4a35;
+    --charcoal: #2a2420;
+    --white: #faf8f4;
+    --gold: #b89a6a;
+    --muted: #7a6e62;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--charcoal);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 72px;
+    background: rgba(240,235,224,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid rgba(139,115,85,0.18);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex; gap: 40px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--charcoal); }
+  .nav-book {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    border: 0.5px solid var(--charcoal); padding: 10px 24px;
+    color: var(--charcoal); text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+  .nav-book:hover { background: var(--charcoal); color: var(--white); }
+
+  /* ── PAGE ROUTING ─────────────────── */
+  .page { display: none; padding-top: 72px; }
+  .page.active { display: block; }
+
+  /* ── LISTING PAGE ─────────────────── */
+  .listing-hero {
+    padding: 100px 80px 60px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .listing-hero .eyebrow {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--bark); margin-bottom: 20px;
+  }
+  .listing-hero h1 {
+    font-family: var(--serif); font-weight: 300; font-size: clamp(48px, 4vw, 80px);
+    line-height: 1.08; color: var(--charcoal);
+  }
+  .listing-hero h1 em { font-style: italic; color: var(--bark); }
+  .listing-hero p {
+    /* max-width: 520px;  */
+    margin-top: 24px;
+    font-size: 15px; line-height: 1.75; color: var(--muted);
+  }
+
+  .retreat-grid {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 80px 120px;
+  }
+
+  .retreat-card {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; margin-bottom: 2px;
+    cursor: pointer; overflow: hidden;
+    transition: opacity 0.4s;
+  }
+  .retreat-card:hover { opacity: 0.92; }
+  .retreat-card:nth-child(even) .card-img { order: 2; }
+  .retreat-card:nth-child(even) .card-body { order: 1; }
+
+  .card-img {
+    position: relative; height: 520px; overflow: hidden;
+  }
+  .card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  .retreat-card:hover .card-img img { transform: scale(1.04); }
+  .card-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(42,36,32,0.35) 0%, transparent 60%);
+  }
+  .card-num {
+    position: absolute; top: 32px; left: 32px;
+    font-family: var(--serif); font-size: 13px; letter-spacing: 0.12em;
+    color: rgba(250,248,244,0.7);
+  }
+
+  .card-body {
+    background: var(--cream-dark);
+    padding: 64px 56px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .card-location {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--bark); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-location::before {
+    content: ''; display: block;
+    width: 24px; height: 0.5px; background: var(--bark);
+  }
+  .card-body h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(32px, 3.5vw, 46px); line-height: 1.1;
+    color: var(--charcoal); margin-bottom: 8px;
+  }
+  .card-body .subtitle {
+    font-family: var(--serif); font-style: italic;
+    font-size: 15px; color: var(--bark); margin-bottom: 28px;
+  }
+  .card-body p {
+    font-size: 14px; line-height: 1.85; color: var(--muted);
+    max-width: 360px; margin-bottom: 40px;
+  }
+  .card-tags {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px;
+  }
+  .tag {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    border: 0.5px solid rgba(139,115,85,0.4);
+    padding: 6px 14px; color: var(--bark);
+  }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--charcoal); text-decoration: none;
+    border-bottom: 0.5px solid var(--charcoal);
+    padding-bottom: 4px;
+    transition: gap 0.3s;
+    cursor: pointer; background: none; border-top: none; border-left: none; border-right: none;
+  }
+  .btn-ghost:hover { gap: 20px; }
+  .btn-ghost .arrow { font-size: 14px; }
+
+  /* ── DETAIL PAGE ────────────────────── */
+  .detail-hero {
+    height: 92vh; position: relative; overflow: hidden;
+  }
+  .detail-hero img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .detail-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(42,36,32,0.55) 0%,
+      rgba(42,36,32,0.1) 60%,
+      transparent 100%
+    );
+  }
+  .detail-hero-content {
+    position: absolute; bottom: 80px; left: 80px;
+    max-width: 560px;
+  }
+  .detail-hero-content .eyebrow {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(250,248,244,0.65); margin-bottom: 20px;
+  }
+  .detail-hero-content h1 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(44px, 6vw, 76px); line-height: 1.05;
+    color: var(--white);
+  }
+  .detail-hero-content h1 em { font-style: italic; color: rgba(250,248,244,0.75); }
+  .detail-hero-content .tagline {
+    font-family: var(--serif); font-style: italic;
+    font-size: 17px; color: rgba(250,248,244,0.7);
+    margin-top: 16px; margin-bottom: 40px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-light {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    border: 0.5px solid rgba(250,248,244,0.7);
+    padding: 14px 32px; color: var(--white);
+    text-decoration: none; transition: background 0.3s;
+    cursor: pointer; background: none;
+  }
+  .btn-light:hover { background: rgba(250,248,244,0.12); }
+  .btn-solid {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    background: var(--white); padding: 14px 32px;
+    color: var(--charcoal); text-decoration: none;
+    border: none; cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  .btn-solid:hover { opacity: 0.88; }
+
+  /* Story section */
+  .story-section {
+    max-width: 1200px; margin: 0 auto;
+    padding: 120px 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .story-text .label {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--bark); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .story-text .label::before {
+    content: ''; display: block;
+    width: 32px; height: 0.5px; background: var(--bark);
+  }
+  .story-text h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(34px, 3.5vw, 50px); line-height: 1.12;
+    color: var(--charcoal); margin-bottom: 32px;
+  }
+  .story-text h2 em { font-style: italic; color: var(--bark); }
+  .story-text p {
+    font-size: 15px; line-height: 1.9; color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .story-visual { position: relative; }
+  .story-visual img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  }
+  .story-visual-accent {
+    position: absolute; bottom: -40px; right: -40px;
+    width: 220px; height: 220px;
+    border: 0.5px solid rgba(139,115,85,0.3);
+    z-index: -1;
+  }
+  .stat-row {
+    display: flex; gap: 48px; margin-top: 48px; padding-top: 48px;
+    border-top: 0.5px solid rgba(139,115,85,0.2);
+  }
+  .stat { }
+  .stat .num {
+    font-family: var(--serif); font-size: 40px; font-weight: 300;
+    color: var(--charcoal); line-height: 1;
+  }
+  .stat .unit { font-size: 16px; color: var(--bark); }
+  .stat .desc {
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-top: 6px;
+  }
+
+  /* Experiences */
+  .experiences-section {
+    background: var(--charcoal); padding: 100px 80px;
+  }
+  .exp-header {
+    max-width: 1200px; margin: 0 auto 64px;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .exp-header .label {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(250,248,244,0.4); margin-bottom: 16px;
+  }
+  .exp-header h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(34px, 3.5vw, 50px); line-height: 1.1;
+    color: var(--white);
+  }
+  .exp-header h2 em { font-style: italic; color: var(--sand); }
+  .exp-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  }
+  .exp-card {
+    position: relative; overflow: hidden; height: 420px; cursor: pointer;
+  }
+  .exp-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(0.7);
+    transition: transform 0.7s ease, filter 0.4s;
+  }
+  .exp-card:hover img { transform: scale(1.06); filter: brightness(0.55); }
+  .exp-card-body {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 36px 32px;
+  }
+  .exp-card-body .exp-icon {
+    width: 36px; height: 36px; margin-bottom: 16px;
+    opacity: 0.6;
+  }
+  .exp-card-body .exp-num {
+    font-family: var(--serif); font-size: 11px; letter-spacing: 0.14em;
+    color: rgba(250,248,244,0.4); margin-bottom: 8px;
+  }
+  .exp-card-body h3 {
+    font-family: var(--serif); font-weight: 300; font-size: 24px;
+    color: var(--white); margin-bottom: 10px;
+  }
+  .exp-card-body p {
+    font-size: 13px; line-height: 1.65; color: rgba(250,248,244,0.6);
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s;
+    /* opacity: 0; */
+  }
+  .exp-card:hover .exp-card-body p { max-height: 100px; opacity: 1; }
+
+  /* Rooms */
+  .rooms-section {
+    max-width: 1200px; margin: 0 auto;
+    padding: 120px 80px;
+  }
+  .rooms-header { margin-bottom: 64px; }
+  .rooms-header .label {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--bark); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .rooms-header .label::before {
+    content: ''; display: block;
+    width: 32px; height: 0.5px; background: var(--bark);
+  }
+  .rooms-header h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(34px, 3.5vw, 50px); line-height: 1.1;
+    color: var(--charcoal);
+  }
+  .rooms-scroll {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2px;
+  }
+  .room-card { position: relative; overflow: hidden; }
+  .room-card img {
+    width: 100%; height: 360px; object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+  .room-card:hover img { transform: scale(1.05); }
+  .room-info {
+    background: var(--cream-dark); padding: 28px 32px;
+  }
+  .room-info .room-type {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--bark); margin-bottom: 8px;
+  }
+  .room-info h3 {
+    font-family: var(--serif); font-weight: 300; font-size: 24px;
+    color: var(--charcoal); margin-bottom: 12px;
+  }
+  .room-info p {
+    font-size: 13px; line-height: 1.7; color: var(--muted); margin-bottom: 20px;
+  }
+  .room-amenities {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;
+  }
+  .amenity {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); border: 0.5px solid rgba(139,115,85,0.3);
+    padding: 5px 12px;
+  }
+  .room-info .price {
+    font-family: var(--serif); font-size: 22px; font-weight: 300;
+    color: var(--charcoal); margin-bottom: 20px;
+  }
+  .room-info .price span { font-size: 13px; color: var(--muted); }
+
+  /* ── ROOM BOOK BUTTON ──────────────────── */
+  .btn-book-room {
+    display: block;
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--charcoal);
+    color: var(--white);
+    border: none;
+    padding: 14px 24px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s, opacity 0.3s;
+    margin-top: 4px;
+  }
+  .btn-book-room:hover {
+    background: var(--earth);
+    opacity: 0.95;
+  }
+
+  /* Wellness / Ode Spa */
+  .wellness-section {
+    background: var(--cream-dark);
+    padding: 120px 80px;
+  }
+  .wellness-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .wellness-images { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .wellness-images img {
+    width: 100%; aspect-ratio: 1; object-fit: cover;
+  }
+  .wellness-images img:first-child {
+    grid-column: span 2; aspect-ratio: 2/1;
+  }
+
+  /* Testimonial */
+  .testimonial-section {
+    max-width: 900px; margin: 0 auto;
+    padding: 120px 80px; text-align: center;
+  }
+  .testimonial-section .quote-mark {
+    font-family: var(--serif); font-size: 80px; line-height: 1;
+    color: rgba(139,115,85,0.2); display: block; margin-bottom: -20px;
+  }
+  .testimonial-section blockquote {
+    font-family: var(--serif); font-weight: 300; font-style: italic;
+    font-size: clamp(22px, 3vw, 34px); line-height: 1.5;
+    color: var(--charcoal); margin-bottom: 40px;
+  }
+  .testimonial-section cite {
+    font-style: normal; font-size: 12px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--bark);
+  }
+
+  /* CTA */
+  .detail-cta {
+    background: var(--charcoal);
+    padding: 120px 80px; text-align: center;
+  }
+  .detail-cta .label {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(250,248,244,0.4); margin-bottom: 24px;
+  }
+  .detail-cta h2 {
+    font-family: var(--serif); font-weight: 300;
+    font-size: clamp(36px, 4.5vw, 60px); line-height: 1.1;
+    color: var(--white); margin-bottom: 48px;
+  }
+  .detail-cta h2 em { font-style: italic; color: var(--sand); }
+  .cta-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+  /* Footer */
+  footer {
+    background: var(--charcoal);
+    padding: 64px 80px;
+    border-top: 0.5px solid rgba(250,248,244,0.06);
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    margin-bottom: 64px;
+  }
+  .footer-brand .logo {
+    font-family: var(--serif); font-size: 16px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--white); margin-bottom: 20px;
+  }
+  .footer-brand p {
+    font-size: 13px; line-height: 1.8; color: rgba(250,248,244,0.4);
+    max-width: 260px;
+  }
+  .footer-col h4 {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(250,248,244,0.3); margin-bottom: 20px;
+  }
+  .footer-col a {
+    display: block; font-size: 13px; color: rgba(250,248,244,0.55);
+    text-decoration: none; margin-bottom: 12px;
+    transition: color 0.3s;
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    padding-top: 32px;
+    border-top: 0.5px solid rgba(250,248,244,0.06);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 11px; color: rgba(250,248,244,0.25); letter-spacing: 0.1em; }
+
+  /* Back button */
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); cursor: pointer; background: none;
+    border: none; padding: 0; margin: 32px 80px;
+    transition: color 0.3s;
+  }
+  .back-btn:hover { color: var(--charcoal); }
+
+  /* Divider */
+  .divider {
+    max-width: 1200px; margin: 0 auto;
+    border: none; border-top: 0.5px solid rgba(139,115,85,0.18);
+  }
+
+  /* Scroll reveal placeholder for sections */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { animation: fadeUp 0.8s ease forwards; }
+
+  /* ══════════════════════════════════════════════
+     HERO VIDEO SECTION
+  ══════════════════════════════════════════════ */
+
+  #hero-video-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #hero-bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    animation: heroZoom 18s ease-out forwards;
+    will-change: transform;
+    z-index: 0;
+  }
+
+  @keyframes heroZoom {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1.0); }
+  }
+
+  #hero-fallback-img {
+    display: none;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(42,36,32,0.38) 0%,
+        rgba(42,36,32,0.12) 30%,
+        rgba(42,36,32,0.14) 60%,
+        rgba(42,36,32,0.68) 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(42,36,32,0.28) 0%,
+        transparent 55%
+      );
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.55);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    animation: heroFadeUp 1.1s ease 0.3s forwards;
+  }
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 0.5px;
+    background: rgba(250,248,244,0.35);
+  }
+
+  .hero-headline {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 100px);
+    line-height: 1.04;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: heroFadeUp 1.2s ease 0.55s forwards;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: rgba(250,248,244,0.78);
+  }
+
+  .hero-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(16px, 1.8vw, 21px);
+    line-height: 1.65;
+    color: rgba(250,248,244,0.62);
+    max-width: 560px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: heroFadeUp 1.2s ease 0.8s forwards;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: heroFadeUp 1.2s ease 1.05s forwards;
+  }
+
+  .hero-btn-primary {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: var(--white);
+    color: var(--charcoal);
+    border: none;
+    padding: 16px 38px;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .hero-btn-primary:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  .hero-btn-ghost {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--white);
+    border: 0.5px solid rgba(250,248,244,0.55);
+    padding: 16px 38px;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .hero-btn-ghost:hover {
+    background: rgba(250,248,244,0.1);
+    border-color: rgba(250,248,244,0.85);
+    transform: translateY(-1px);
+  }
+
+  .hero-rule {
+    width: 48px;
+    height: 0.5px;
+    background: var(--gold);
+    margin: 0 auto 28px;
+    opacity: 0;
+    animation: heroFadeIn 1.0s ease 0.7s forwards;
+  }
+
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: heroFadeIn 1.0s ease 1.6s forwards;
+    cursor: pointer;
+  }
+  .hero-scroll-indicator span {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(250,248,244,0.4);
+  }
+  .scroll-line {
+    width: 0.5px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(250,248,244,0.4), transparent);
+    animation: scrollPulse 2.2s ease-in-out 2s infinite;
+  }
+
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes heroFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50%       { opacity: 0.9; transform: scaleY(1.15); transform-origin: top; }
+  }
+
+  body.hero-visible nav {
+    background: transparent;
+    border-bottom-color: transparent;
+    backdrop-filter: none;
+  }
+  body.hero-visible .nav-logo,
+  body.hero-visible .nav-links a,
+  body.hero-visible .nav-book {
+    color: rgba(250,248,244,0.82);
+  }
+  body.hero-visible .nav-links a:hover,
+  body.hero-visible .nav-links a.active {
+    color: var(--white);
+  }
+  body.hero-visible .nav-book {
+    border-color: rgba(250,248,244,0.5);
+  }
+  body.hero-visible .nav-book:hover {
+    background: rgba(250,248,244,0.12);
+    color: var(--white);
+  }
+  body.hero-visible .nav-logo span {
+    color: var(--gold);
+  }
+
+  nav {
+    transition: background 0.5s ease, backdrop-filter 0.5s ease, border-color 0.5s ease;
+  }
+  nav .nav-logo,
+  nav .nav-links a,
+  nav .nav-book {
+    transition: color 0.4s ease, background 0.3s ease, border-color 0.4s ease;
+  }
+
+  #page-home { padding-top: 0 !important; }
+
+  @media (max-width: 768px) {
+    #hero-bg-video   { display: none; }
+    #hero-fallback-img { display: block; }
+
+    .hero-headline { font-size: clamp(40px, 10vw, 64px); }
+    .hero-sub { font-size: 15px; }
+    .hero-cta-row { gap: 10px; }
+    .hero-btn-primary,
+    .hero-btn-ghost {
+      padding: 15px 26px;
+      font-size: 10px;
+      min-height: 48px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .listing-hero, .retreat-grid, .rooms-section, .story-section { padding-left: 24px; padding-right: 24px; }
+    .experiences-section, .wellness-section, .detail-cta, footer { padding-left: 24px; padding-right: 24px; }
+    .testimonial-section { padding-left: 24px; padding-right: 24px; }
+    .retreat-card { grid-template-columns: 1fr; }
+    .card-img { height: 320px; }
+    .retreat-card:nth-child(even) .card-img { order: 0; }
+    .retreat-card:nth-child(even) .card-body { order: 0; }
+    .story-section { grid-template-columns: 1fr; gap: 40px; }
+    .wellness-inner { grid-template-columns: 1fr; gap: 40px; }
+    .exp-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .back-btn { margin: 24px; }
+    .detail-hero-content { left: 24px; bottom: 40px; }
+  }
+
+  /* HERO SECTION */
+
+ @media (max-width: 768px) {
+  .hero-content {
+    bottom: 40px;
+    left: 24px;
+    right: 24px;
+    max-width: calc(100% - 48px);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-scroll-indicator {
+    position: absolute;
+    left: 24px;
+    right: auto;
+    transform: none;
+    bottom: 40px;        /* will be overridden by JS below */
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .hero-scroll-indicator .scroll-line {
+    width: 48px;
+    height: 0.5px;
+    background: linear-gradient(to right, rgba(250,248,244,0.4), transparent);
+    animation: none;
+  }
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ──────────────────────────────── -->
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">Ridhira <span>Retreats</span></a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" class="active" id="nav-retreats">Our Retreats</a></li>
+    <li><a href="#">Destinations</a></li>
+    <li><a href="#">Experiences</a></li>
+    <!-- <li><a href="#">Ode Spa</a></li> -->
+    <li><a href="#">Stories</a></li>
+  </ul>
+  <a class="nav-book" href="#retreat-grid-anchor">Book</a>
+</nav>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- PAGE: LISTING                                  -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+ <section id="hero-video-section" aria-label="Hero — Escape to Timeless Wellness">
+  
+  <!-- Background Video -->
+  <video
+    id="hero-bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80"
+  >
+    <source src="https://videos.pexels.com/video-files/1448735/1448735-hd_1920_1080_25fps.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Fallback Image -->
+  <img
+    id="hero-fallback-img"
+    src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85"
+    alt="Ridhira Retreats — Timeless Wellness"
+    loading="eager"
+  />
+
+  <!-- Overlay -->
+ <!-- LEFT BOTTOM CONTENT -->
+<div class="hero-content" style="position:absolute; z-index:2; bottom:60px; left:60px; text-align:left; align-items:flex-start; padding:0; max-width:480px;">
+  <p class="hero-sub" style="opacity:1; animation:heroFadeUp 1.2s ease 0.8s both;">Escape into culturally rooted wellness escapes</p>
+  <a class="hero-btn-primary" style="opacity:0; animation:heroFadeUp 1.2s ease 1.05s forwards;"
+     href="#"
+     onclick="document.getElementById('retreat-grid-anchor').scrollIntoView({behavior:'smooth'}); return false;">
+    FIND YOUR RETREAT
+  </a>
+</div>
+
+<!-- RIGHT BOTTOM SCROLL -->
+<div class="hero-scroll-indicator" style="left:auto; right:60px; transform:none;"
+     onclick="document.getElementById('retreat-grid-anchor').scrollIntoView({behavior:'smooth'})">
+  <span>Scroll to Explore</span>
+  <div class="scroll-line"></div>
+</div>
+
+</section>
+
+  <div id="retreat-grid-anchor"></div>
+  <div class="listing-hero">
+    <p class="eyebrow">Our Retreats</p>
+    <h1>Shaped by place, story, and culture.</h1>
+    <p>From a haveli in Rajasthan to a Portuguese home in Goa, each retreat is a thoughtfully chosen heritage escape. Set in exclusive tourist destinations, these restored properties reflect the character of the land through its architecture, culture, and flavours, all becoming a part of the experience.</p>
+  </div>
+
+  <div class="retreat-grid">
+
+    <div class="retreat-card" onclick="showPage('casa')">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80" alt="Casa De Mello, Goa" />
+        <div class="card-img-overlay"></div>
+        <span class="card-num">01 / 03</span>
+      </div>
+      <div class="card-body">
+        <p class="card-location">Ridhira Retreat Saligao</p>
+        <h2>Casa De Mello</h2>
+        <p class="subtitle">c. 1863 — A Portuguese Legacy</p>
+        <p>Dating back to the 1860s, Casa De Mello is a Portuguese home whose walls carry stories of colonial heritage and whisper tales of a bygone charm. Now reimagined as an exclusive Ridhira Retreat, it opens into a world of wellness, offering experiences that restore balance and inspire renewal.
+</p>
+        <div class="card-tags">
+          <span class="tag">Heritage</span>
+          <span class="tag">Wellness</span>
+          <span class="tag">Spa</span>
+          <span class="tag">Goan Flavours</span>
+        </div>
+        <button class="btn-ghost">Explore Retreat <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <div class="retreat-card" onclick="showPage('tigerhills')">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?w=900&q=80" alt="Tiger Hills, Udaipur" />
+        <div class="card-img-overlay"></div>
+        <span class="card-num">02 / 03</span>
+      </div>
+      <div class="card-body">
+        <p class="card-location">Ridhira Retreat Udaipur
+</p>
+        <h2>Tiger Hills</h2>
+        <p class="subtitle">A Private World of Access
+</p>
+        <p>Set in one of Udaipur’s most exclusive enclaves, Tiger Hills is a contemporary Ridhira Retreat shaped by privacy, curation, and distinction. With a strictly limited membership, it is designed as a world of curated experiences, where access is intentional, spaces are layered with purpose, and belonging itself becomes the true luxury.
+</p>
+        <div class="card-tags">
+          <span class="tag">Exclusive Access</span>
+          <span class="tag">Curated Living</span>
+          <span class="tag">Members-Onl</span>
+          <span class="tag">Private Gatherings</span>
+        </div>
+        <button class="btn-ghost">Explore Retreat <span class="arrow">→</span></button>
+      </div>
+    </div>
+
+    <div class="retreat-card" onclick="showPage('karovi')">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=80" alt="Karovi, Udaipur" />
+        <div class="card-img-overlay"></div>
+        <span class="card-num">03 / 03</span>
+      </div>
+      <div class="card-body">
+        <p class="card-location">Ridhira Retreat Lake Pichola</p>
+        <h2>Karohi Haveli</h2>
+        <p class="subtitle">Coming Soon
+</p>
+        <p>A lakeside heritage haveli with panoramic views of Udaipur's old city and the City Palace.
+</p>
+        <!-- <div class="card-tags">
+          <span class="tag">Heritage Haveli</span>
+          <span class="tag">Forest</span>
+          <span class="tag">Detox</span>
+          <span class="tag">Longevity</span>
+        </div>
+        <button class="btn-ghost">Explore Retreat <span class="arrow">→</span></button> -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════ -->
+<!-- EXPERIENCES — INFINITE AUTO-SCROLL SLIDER      -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="exp-infinite-section">
+
+  <div class="exp-infinite-header">
+    <div>
+      <p class="eyebrow" style="color:var(--bark); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; margin-bottom:16px;">What Awaits You</p>
+      <h2 class="exp-infinite-title">Immersive <em>Experiences</em></h2>
+    </div>
+    <p class="exp-drag-hint">Drag to explore</p>
+  </div>
+
+  <div class="exp-infinite-viewport" id="exp-viewport">
+    <div class="exp-infinite-track" id="exp-track">
+
+      <div class="exp-card-item">
+        <div class="exp-card-img">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&q=85" alt="Heritage & Architecture" />
+          <div class="exp-card-overlay"></div>
+        </div>
+        <div class="exp-card-body">
+          <span class="exp-card-num">01</span>
+          <h3>Heritage & Architecture</h3>
+          <p>Step behind old doors and carved walls, where untold stories quietly unfold.</p>
+        </div>
+      </div>
+
+      <div class="exp-card-item">
+        <div class="exp-card-img">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=85" alt="Local Flavours" />
+          <div class="exp-card-overlay"></div>
+        </div>
+        <div class="exp-card-body">
+          <span class="exp-card-num">02</span>
+          <h3>Local Flavours</h3>
+          <p>Savour delectable local cuisine and taste the story behind every recipe.</p>
+        </div>
+      </div>
+
+      <div class="exp-card-item">
+        <div class="exp-card-img">
+          <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=700&q=85" alt="Spa Therapies" />
+          <div class="exp-card-overlay"></div>
+        </div>
+        <div class="exp-card-body">
+          <span class="exp-card-num">03</span>
+          <h3>Spa Therapies</h3>
+          <p>Unwind with restorative treatments inspired by centuries of ancient healing traditions.</p>
+        </div>
+      </div>
+
+      <div class="exp-card-item">
+        <div class="exp-card-img">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=700&q=85" alt="Wellness Rituals" />
+          <div class="ecc-overlay"></div>
+        </div>
+        <div class="exp-card-body">
+          <span class="exp-card-num">04</span>
+          <h3>Wellness Rituals</h3>
+          <p>Experience yoga, meditation, and curated wellness practices woven into your escape.</p>
+        </div>
+      </div>
+
+    
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- DESTINATIONS SECTION                           -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="destinations-section">
+
+  <!-- Header -->
+  <div class="dest-header">
+    <div class="dest-header-left">
+      <p class="eyebrow" style="color:var(--bark); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; margin-bottom:16px;">Where We Are & Where We're Going</p>
+      <h2 class="dest-title">Across landscapes, <br>stories, and <em>distinctive escapes.</em></h2>
+    </div>
+    <div class="dest-header-right">
+      <p>Every Ridhira Retreat begins with a setting worth arriving for. Across beaches, forests, mountains, deserts, and culturally rich destinations, each retreat is shaped by the land, its story, and the experience it invites.
+/p>
+      <!-- <a class="btn-ghost" style="margin-top:28px; display:inline-flex;">About Us <span class="arrow" style="margin-left:12px;">→</span></a> -->
+    </div>
+  </div>
+
+  <!-- Featured Destination — Side by Side: Goa + Jodhpur -->
+  <div class="dest-featured-pair">
+
+    <!-- LEFT: Goa / Saligao -->
+    <div class="dest-featured dest-featured-main">
+      <div class="dest-featured-img">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&q=85" alt="Goa — Casa De Mello" />
+        <div class="dest-featured-overlay"></div>
+        <div class="dest-featured-content">
+          <span class="dest-badge dest-badge-active">Now Open</span>
+          <p class="dest-featured-region">Goa, India</p>
+          <h3 class="dest-featured-name">Saligao</h3>
+          <p class="dest-featured-sub">Casa De Mello</p>
+          <p class="dest-featured-desc">Set in the quiet charm of Saligao, Casa De Mello offers a more serene side of Goa, while keeping the coast's vibrant energy within easy reach. It is a retreat where heritage and the many moods of Goa come together.</p>
+          <button class="dest-cta-btn" onclick="showPage('casa')">Explore Casa De Mello →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Jodhpur -->
+    <div class="dest-featured dest-featured-side">
+      <div class="dest-featured-img">
+        <img src="https://www.thepinnaclelist.com/wp-content/uploads/2021/12/Jaswant-Thada-and-Mehrangarh-Fort-Jodhpur-Rajasthan-India.jpg" alt="Jodhpur — The Blue City" />
+        <div class="dest-featured-overlay"></div>
+        <div class="dest-featured-content">
+          <span class="dest-badge dest-badge-soon">Coming Soon</span>
+          <p class="dest-featured-region">Rajasthan, India</p>
+          <h3 class="dest-featured-name dest-featured-name--side">Jodhpur</h3>
+          <p class="dest-featured-sub">The Blue City</p>
+          <p class="dest-featured-desc">The Blue City draws you in with indigo lanes watched over by the commanding presence of Mehrangarh Fort.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Destination Grid — 5 cards (Jodhpur now featured above) -->
+  <div class="dest-grid">
+
+    <!-- Udaipur — Active -->
+    <div class="dest-card dest-card-active">
+      <div class="dest-card-img">
+        <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=700&q=85" alt="Udaipur" />
+        <div class="dest-card-overlay"></div>
+      </div>
+      <div class="dest-card-body">
+        <span class="dest-badge dest-badge-active">Now Open</span>
+        <p class="dest-card-region">Rajasthan, India</p>
+        <h3 class="dest-card-name">Udaipur</h3>
+        <p class="dest-card-desc">Two distinct retreats. Tiger Hills offers private access, while Karohi Haveli brings old-city charm and views over Lake Pichola.</p>
+        <div class="dest-card-props">
+          <span onclick="showPage('tigerhills')">Tiger Hills ↗</span>
+          <span onclick="showPage('karovi')">Karovi ↗</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ayodhya — Coming Soon -->
+    <div class="dest-card dest-card-soon">
+      <div class="dest-card-img">
+        <img src="https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=700&q=85" alt="Ayodhya" />
+        <div class="dest-card-overlay"></div>
+      </div>
+      <div class="dest-card-body">
+        <span class="dest-badge dest-badge-soon">COMING SOON</span>
+        <p class="dest-card-region">Uttar Pradesh, India</p>
+        <h3 class="dest-card-name">Ayodhya</h3>
+        <p class="dest-card-desc">We take you to one of India's most sacred cities, marked by faith and enduring cultural significance.</p>
+        <div class="dest-card-notify">
+          <span class="notify-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kovalam — Coming Soon -->
+    <div class="dest-card dest-card-soon">
+      <div class="dest-card-img">
+        <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=700&q=85" alt="Kovalam" />
+        <div class="dest-card-overlay"></div>
+      </div>
+      <div class="dest-card-body">
+        <span class="dest-badge dest-badge-soon">COMING SOON</span>
+        <p class="dest-card-region">Kerala, India</p>
+        <h3 class="dest-card-name">Kovalam</h3>
+        <p class="dest-card-desc">Tranquil waters, palm-fringed beaches, crescent shores, and a coastline watched over by its lighthouse await you.</p>
+        <div class="dest-card-notify">
+          <span class="notify-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kerala Backwaters — Coming Soon -->
+    <div class="dest-card dest-card-soon">
+      <div class="dest-card-img">
+        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=700&q=85" alt="Kerala Backwaters" />
+        <div class="dest-card-overlay"></div>
+      </div>
+      <div class="dest-card-body">
+        <span class="dest-badge dest-badge-soon">Coming 2027</span>
+        <p class="dest-card-region">Kerala, India</p>
+        <h3 class="dest-card-name">Kerala Backwaters</h3>
+        <p class="dest-card-desc">A floating retreat among the palm-fringed backwaters of Alleppey — where traditional Kerala Ayurveda meets the meditative rhythm of still water and open sky.</p>
+        <div class="dest-card-notify">
+          <span>Notify me when open</span>
+          <span class="notify-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manali — Coming Soon -->
+    <div class="dest-card dest-card-soon">
+      <div class="dest-card-img">
+        <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=700&q=85" alt="Manali" />
+        <div class="dest-card-overlay"></div>
+      </div>
+      <div class="dest-card-body">
+        <span class="dest-badge dest-badge-soon">COMING SOON</span>
+        <p class="dest-card-region">Himachal Pradesh, India</p>
+        <h3 class="dest-card-name">Manali</h3>
+        <p class="dest-card-desc">From snow-capped peaks to adrenaline-fuelled experiences, Manali draws those who seek the mountains.</p>
+        <div class="dest-card-notify">
+          <span class="notify-arrow">→</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- Bottom CTA Strip -->
+  <div class="dest-footer-strip">
+    <p class="dest-strip-text">Every Ridhira destination is chosen for one reason: <em>the land itself heals.</em></p>
+    <a class="dest-strip-link">View All Destinations →</a>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- 8 DIMENSIONS OF WELLNESS                       -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="wellness-dims-section">
+
+  <!-- Top editorial header — full width -->
+  <div class="wd-intro">
+    <div class="wd-intro-left">
+      <p class="eyebrow" style="color:var(--bark); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; margin-bottom:16px;">A Comprehensive Approach</p>
+      <h2 class="wd-title">The 8 
+<br><em>Dimensions of Wellness</em></h2>
+    </div>
+    <div class="wd-intro-right">
+      <p>Wellness is not limited to the body or the mind. It is shaped by many interconnected dimensions that come together to support a more balanced and fulfilling life.
+At Ridhira Retreats, these 8 Dimensions of Wellness guide how we shape each experience, from wellness rituals and nourishing meals to restored spaces and moments of pause.
+</p>
+      <!-- <p>Every programme, every treatment, every meal, every silence at Ridhira is designed with these eight dimensions as its compass.</p> -->
+      <button class="btn-ghost" style="margin-top:28px; display:inline-flex;">Our Wellness Philosophy <span class="arrow" style="margin-left:12px;">→</span></button>
+    </div>
+  </div>
+
+  <!-- Main layout: dimensions list left + image right -->
+  <div class="wd-body">
+
+    <div class="wd-dims-list">
+      <div class="wd-dim" data-num="01">
+        <div class="wd-dim-header">
+          <span class="wd-dim-num">01</span>
+          <h3 class="wd-dim-name">Physical</h3>
+        </div>
+        <p class="wd-dim-desc">Restorative therapies, nourishing gourmet recipes, and a gentler pace help the body ease into balance.</p>
+      </div>
+
+      <div class="wd-dim" data-num="02">
+        <div class="wd-dim-header">
+          <span class="wd-dim-num">02</span>
+          <h3 class="wd-dim-name">Emotional</h3>
+        </div>
+        <p class="wd-dim-desc">Quiet corners, slower days, and thoughtful moments create space to feel lighter and more at ease.
+</p>
+      </div>
+
+      <div class="wd-dim" data-num="03">
+        <div class="wd-dim-header">
+          <span class="wd-dim-num">03</span>
+          <h3 class="wd-dim-name">Spiritual
+</h3>
+        </div>
+        <p class="wd-dim-desc">Stillness, reflection, and a deeper connection to place invite a sense of calm that lingers.</p>
+      </div>
+
+      <div class="wd-dim" data-num="04">
+        <div class="wd-dim-header">
+          <span class="wd-dim-num">04</span>
+          <h3 class="wd-dim-name">Social
+</h3>
+        </div>
+        <p class="wd-dim-desc">Shared tables, meaningful conversations, and time together turn every Retreat into a more connected escape.</p>
+      </div>
+
+      <div class="wd-dim" data-num="05">
+        <div class="wd-dim-header">
+          <span class="wd-dim-num">05</span>
+          <h3 class="wd-dim-name">Occupational</h3>
+        </div>
+        <p class="wd-dim-desc">Stepping away from routine creates room for clarity, renewed perspective, and a healthier rhythm of work and rest.
+</p>
+      </div>
+
+      <div class="wd-dim" data-num="06">
+        <div class="wd-dim-header">
+          <span class="wd-dim-num">06</span>
+          <h3 class="wd-dim-name">Intellectual</h3>
+        </div>
+        <p class="wd-dim-desc">Stories, heritage, local culture, and new experiences open the mind to discovery from a different point of view.
+</p>
+      </div>
+
+      <div class="wd-dim" data-num="07">
+        <div class="wd-dim-header">
+          <span class="wd-dim-num">07</span>
+          <h3 class="wd-dim-name">Environmental</h3>
+        </div>
+        <p class="wd-dim-desc">Shaped by their landscapes, architecture, and surroundings, our Retreats invite a deeper relationship with the world around you.
+</p>
+      </div>
+
+      <div class="wd-dim" data-num="08">
+        <div class="wd-dim-header">
+          <span class="wd-dim-num">08</span>
+          <h3 class="wd-dim-name">Financial</h3>
+        </div>
+        <p class="wd-dim-desc">Choosing time away for rest, reflection, and meaningful experience can be part of living well, not just spending well.
+</p>
+      </div>
+    </div>
+
+    <!-- Right image stack -->
+    <div class="wd-visuals">
+      <div class="wd-img-primary">
+        <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?w=800&q=85" alt="Wellness — mind and body" />
+      </div>
+      <div class="wd-img-secondary">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=500&q=85" alt="Yoga at sunrise" />
+        <div class="wd-img-accent"></div>
+      </div>
+      <div class="wd-stat-block">
+        <div class="wd-stat">
+          <span class="wd-stat-num">8</span>
+          <span class="wd-stat-label">Dimensions of Wellness</span>
+        </div>
+        <div class="wd-stat-divider"></div>
+        <div class="wd-stat">
+          <span class="wd-stat-num">1</span>
+          <span class="wd-stat-label">Complete Human Being</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="logo">Ridhira Retreats</p>
+        <p>Where you don't just stay.<br>You restore.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Retreats</h4>
+        <a href="#">Casa De Mello, Goa</a>
+        <a href="#">Tiger Hills, Udaipur</a>
+        <a href="#">Karovi, Udaipur</a>
+      </div>
+      <div class="footer-col">
+        <h4>Experiences</h4>
+        <a href="#">Our Retreats</a>
+        <a href="#">Destinations</a>
+        <a href="#">Experiences</a>
+        <a href="#">Wellness</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">Press</a>
+        <a href="#">Careers</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Ridhira Group of Companies. All rights reserved.</p>
+      <p>Privacy Policy &nbsp;·&nbsp; Terms of Use</p>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- PAGE: CASA DE MELLO                            -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-casa">
+  <button class="back-btn" onclick="showPage('home')">← All Retreats</button>
+
+  <div class="detail-hero">
+    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85" alt="Casa De Mello" />
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <p class="eyebrow">Ridhira Retreat Saligao, Goa &nbsp;·&nbsp; Est. 1863</p>
+      <h1>Casa De<br><em>Mello</em></h1>
+      <p class="tagline">A Portuguese heritage home where the charm of old Goa lives on.
+</p>
+      <div class="hero-btns">
+       <button class="btn-solid" onclick="window.location.href='contact-us.html'">
+  BOOK YOUR STAY 
+</button>
+        <!-- <button class="btn-light">View Experiences</button> -->
+      </div>
+    </div>
+  </div>
+
+  <section class="story-section">
+    <div class="story-text">
+      <p class="label">Our Story</p>
+      <h2>160 years of<br><em>Portuguese-Goan history, </em><br>restored.</h2>
+      <p>Casa De Mello is one of Saligao’s enduring Portuguese homes, first shaped by the De Mello family, whose imprint remains in its arches, courtyards, and timeless details. The home carries the elegance of an era when Goan life blended European influence with local tradition.
+</p>
+      <p>Sunlit courtyards, carved windows, and cool tiled floors reveal a lineage of craftsmanship and memory. Restored with care as a Ridhira Retreat, this historic home invites guests to slow down. It is a place where wellness unfolds within a setting where heritage and emotion live side by side.</p>
+      <!-- <div class="stat-row">
+        <div class="stat">
+          <div class="num">1863<span class="unit"></span></div>
+          <div class="desc">Year Built</div>
+        </div>
+        <div class="stat">
+          <div class="num">6<span class="unit"> Suites</span></div>
+          <div class="desc">Private Stays</div>
+        </div>
+        <div class="stat">
+          <div class="num">2<span class="unit"> Acres</span></div>
+          <div class="desc">Heritage Gardens</div>
+        </div>
+      </div> -->
+    </div>
+    <div class="story-visual">
+      <img src="https://images.unsplash.com/photo-1560185007-5f0bb1866cab?w=700&q=80" alt="Casa De Mello interior" />
+      <div class="story-visual-accent"></div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="experiences-section">
+    <div class="exp-header">
+      <div>
+        <p class="label">What Awaits</p>
+        <h2>Immersive<br><em>Experiences</em></h2>
+      </div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Ayurveda" />
+        <div class="exp-card-body">
+          <p class="exp-num">01</p>
+          <h3>Chakra Healing</h3>
+          <p>Experience a subtle energy practice designed to restore inner alignment. With focused guidance, move towards release and a stronger connection within.
+</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Yoga" />
+        <div class="exp-card-body">
+          <p class="exp-num">02</p>
+          <h3>Yoga and Pranayama
+</h3>
+          <p>Begin the day with yoga and pranayama in a setting that encourages presence. Gentle movement and conscious breathing help you feel more centred, both within yourself and in your surroundings.
+</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Local Cuisine" />
+        <div class="exp-card-body">
+          <p class="exp-num">03</p>
+          <h3>Zumba</h3>
+          <p>Let the music lead as Zumba fills the space with energy and enthusiasm. Each session is designed to feel lively, engaging, and instantly uplifting.
+</p>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Local Cuisine" />
+        <div class="exp-card-body">
+          <p class="exp-num">03</p>
+          <h3>Goan Dining
+</h3>
+          <p>Relish a delightful culinary journey with authentic Goan delicacies stirred up by the in-house chef. Locally sourced ingredients and recipes passed down through generations combine for a delectable experience.
+</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rooms-section">
+    <div class="rooms-header">
+      <p class="label">Accommodation</p>
+      <h2>Six Suites,<br>One Heritage Home</h2>
+    </div>
+    <div class="rooms-scroll">
+
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=700&q=80" alt="The Mello Suite" />
+        <div class="room-info">
+          <p class="room-type">Signature Suite</p>
+          <h3>The Mello Suite</h3>
+          <p>The original master bedroom of the De Mello family. Four-poster bed, private terrace overlooking the garden, original floor tiles restored by Goan craftsmen.</p>
+          <div class="room-amenities">
+            <span class="amenity">Private Terrace</span>
+            <span class="amenity">Heritage Bath</span>
+            <span class="amenity">Garden View</span>
+          </div>
+          <p class="price">₹28,000 <span>per night, incl. breakfast</span></p>
+          <button class="btn-book-room">Book</button>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=700&q=80" alt="Garden Room" />
+        <div class="room-info">
+          <p class="room-type">Garden Room</p>
+          <h3>The Verandah Room</h3>
+          <p>Opens directly onto the colonial-era verandah. Arched windows, handloom cotton linens, and the sound of the courtyard fountain as your alarm.</p>
+          <div class="room-amenities">
+            <span class="amenity">Verandah Access</span>
+            <span class="amenity">Courtyard View</span>
+            <span class="amenity">Clawfoot Tub</span>
+          </div>
+          <p class="price">₹18,000 <span>per night, incl. breakfast</span></p>
+          <button class="btn-book-room">Book</button>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=700&q=80" alt="The Loft" />
+        <div class="room-info">
+          <p class="room-type">Upper-level Room</p>
+          <h3>The Mango Loft</h3>
+          <p>Under the original tiled roof, this upper-level room has exposed wooden beams, mango-tree views, and a sense of being tucked away from the world entirely.</p>
+          <div class="room-amenities">
+            <span class="amenity">Exposed Timber</span>
+            <span class="amenity">Tree Canopy View</span>
+            <span class="amenity">Rain Shower</span>
+          </div>
+          <p class="price">₹16,000 <span>per night, incl. breakfast</span></p>
+          <button class="btn-book-room">Book</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="wellness-section">
+    <div class="wellness-inner">
+      <div class="wellness-images">
+        <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=700&q=80" alt="Ode Spa Goa" />
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&q=80" alt="Treatment" />
+        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=400&q=80" alt="Spa ritual" />
+      </div>
+      <div class="story-text">
+        <p class="label">Wellness Partner</p>
+        <h2><em>Ode Spa</em><br>at Casa De Mello</h2>
+        <p>Ridhira's in-house spa brand, Ode Spa — present across 34 luxury locations in India — brings its signature wellness protocols to Casa De Mello. Every treatment is adapted to the Goan season, your dosha, and your reason for being here.</p>
+        <p>From a 90-minute arrival ritual to week-long detox programmes, the Ode Spa team at Casa De Mello works with you, not for you.</p>
+        <br />
+        <button class="btn-ghost" style="color: var(--charcoal); border-bottom: 0.5px solid var(--charcoal);">Explore Ode Spa Treatments <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial-section">
+    <span class="quote-mark">"</span>
+    <blockquote>I arrived exhausted. Four days in, I forgot what I had been exhausted about. That's what Casa De Mello does — it doesn't just rest you, it rewrites you.</blockquote>
+    <cite>Priya S. &nbsp;·&nbsp; Mumbai &nbsp;·&nbsp; Stayed 5 nights</cite>
+  </section>
+
+  <section class="detail-cta">
+    <p class="label">Begin Your Restoration</p>
+    <h2>Casa De Mello<br>is <em>waiting</em> for you.</h2>
+    <div class="cta-btns">
+      <button class="btn-solid">Reserve Your Stay</button>
+      <button class="btn-light">Speak to a Retreat Advisor</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="logo">Ridhira Retreats</p>
+        <p>Where you don't just stay.<br>You restore.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Retreats</h4>
+        <a href="#" onclick="showPage('casa')">Casa De Mello, Goa</a>
+        <a href="#" onclick="showPage('tigerhills')">Tiger Hills, Udaipur</a>
+        <a href="#" onclick="showPage('karovi')">Karovi, Udaipur</a>
+      </div>
+      <div class="footer-col">
+        <h4>Experiences</h4>
+        <a href="#">Wellness Programs</a>
+        <a href="#">Ode Spa</a>
+        <a href="#">Ayurveda</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">Press</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Ridhira Group of Companies. All rights reserved.</p>
+      <p>Privacy Policy &nbsp;·&nbsp; Terms of Use</p>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- PAGE: TIGER HILLS                              -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-tigerhills">
+  <button class="back-btn" onclick="showPage('home')">← All Retreats</button>
+
+  <div class="detail-hero">
+    <img src="https://images.unsplash.com/photo-1569797727966-a3d7c25906fc?w=1600&q=85" alt="Tiger Hills Udaipur" />
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <p class="eyebrow">Udaipur, Rajasthan &nbsp;·&nbsp; Aravalli Foothills</p>
+      <h1>Tiger<br><em>Hills</em></h1>
+      <p class="tagline">Stillness above the City of Lakes.</p>
+      <div class="hero-btns">
+        <button class="btn-solid">Reserve Your Stay</button>
+        <button class="btn-light">View Experiences</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="story-section">
+    <div class="story-text">
+      <p class="label">The Retreat</p>
+      <h2>The hills above<br>Udaipur hold a<br><em>different silence.</em></h2>
+      <p>Tiger Hills sits on a ridge in the Aravalli foothills, looking out over Udaipur's famous lakes — Pichola, Fateh Sagar, the City Palace reflected in early morning light. The retreat is twelve intimate rooms built into the landscape, not imposed upon it.</p>
+      <p>At Tiger Hills, time feels different. The altitude softens the heat. The view slows your thinking. And the absence of traffic, notifications, and noise makes space for something most guests have forgotten: genuine rest.</p>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">620<span class="unit">m</span></div>
+          <div class="desc">Altitude</div>
+        </div>
+        <div class="stat">
+          <div class="num">12<span class="unit"> Rooms</span></div>
+          <div class="desc">Intimate Rooms</div>
+        </div>
+        <div class="stat">
+          <div class="num">270°<span class="unit"></span></div>
+          <div class="desc">Lake Panorama</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-visual">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=700&q=80" alt="Tiger Hills view" />
+      <div class="story-visual-accent"></div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="experiences-section">
+    <div class="exp-header">
+      <div>
+        <p class="label">What Awaits</p>
+        <h2>Grounded in<br><em>the Aravallis</em></h2>
+      </div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Sunrise Yoga" />
+        <div class="exp-card-body">
+          <p class="exp-num">01</p>
+          <h3>Sunrise Yoga & Meditation</h3>
+          <p>Practice at the edge of the ridge as the sun rises over Lake Pichola. The elevation and the silence make this unlike any yoga class you have attended indoors.</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80" alt="Aravalli walks" />
+        <div class="exp-card-body">
+          <p class="exp-num">02</p>
+          <h3>Aravalli Nature Walks</h3>
+          <p>Guided walks through ancient rocky terrain with a naturalist who has spent decades studying the Aravallis. Medicinal plants, migratory birds, and geological history.</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80" alt="Rajasthani cuisine" />
+        <div class="exp-card-body">
+          <p class="exp-num">03</p>
+          <h3>Rajasthani Thali Ritual</h3>
+          <p>Each evening meal is a ceremonial thali — seasonal, vegetarian, and prepared according to local marwari traditions. Eaten slowly. Together. As the city glows below.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rooms-section">
+    <div class="rooms-header">
+      <p class="label">Accommodation</p>
+      <h2>Twelve Rooms,<br>One Unbroken View</h2>
+    </div>
+    <div class="rooms-scroll">
+
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=700&q=80" alt="Lake View Suite" />
+        <div class="room-info">
+          <p class="room-type">Panorama Suite</p>
+          <h3>The Pichola Suite</h3>
+          <p>Floor-to-ceiling glass facing the lake. Stone walls, a king-bed positioned toward the view, and a private meditation alcove carved from the hillside itself.</p>
+          <div class="room-amenities">
+            <span class="amenity">Lake View</span>
+            <span class="amenity">Private Alcove</span>
+            <span class="amenity">Stone Bath</span>
+          </div>
+          <p class="price">₹32,000 <span>per night, incl. breakfast</span></p>
+          <button class="btn-book-room">Book</button>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=700&q=80" alt="Hillside Room" />
+        <div class="room-info">
+          <p class="room-type">Hillside Room</p>
+          <h3>The Aravalli Room</h3>
+          <p>Built into the slope with a rock garden that flows into the bedroom. Local sandstone, handmade terracotta lamps, and a private sit-out shaded by native babul trees.</p>
+          <div class="room-amenities">
+            <span class="amenity">Rock Garden</span>
+            <span class="amenity">Sandstone Interiors</span>
+            <span class="amenity">Private Sit-out</span>
+          </div>
+          <p class="price">₹22,000 <span>per night, incl. breakfast</span></p>
+          <button class="btn-book-room">Book</button>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=700&q=80" alt="Forest Cottage" />
+        <div class="room-info">
+          <p class="room-type">Private Cottage</p>
+          <h3>The Jungle Cottage</h3>
+          <p>Freestanding on the far edge of the property, surrounded by teak and dhak trees. Complete privacy. A bathtub that faces the forest. No television. That is the point.</p>
+          <div class="room-amenities">
+            <span class="amenity">Freestanding</span>
+            <span class="amenity">Forest View</span>
+            <span class="amenity">Open-air Bath</span>
+          </div>
+          <p class="price">₹26,000 <span>per night, incl. breakfast</span></p>
+          <button class="btn-book-room">Book</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="wellness-section">
+    <div class="wellness-inner">
+      <div class="wellness-images">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=700&q=80" alt="Ode Spa Tiger Hills" />
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&q=80" alt="Treatment room" />
+        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=400&q=80" alt="Spa herbs" />
+      </div>
+      <div class="story-text">
+        <p class="label">Wellness Partner</p>
+        <h2><em>Ode Spa</em><br>at Tiger Hills</h2>
+        <p>Our Ode Spa at Tiger Hills is designed around Rajasthani healing traditions — rose, saffron, and desert botanicals form the base of treatments that have been adapted by our therapists over years of practice in this specific terrain.</p>
+        <p>The treatment rooms face the Aravallis. Many guests choose to finish a session and simply sit — watching the hills, feeling the stillness, letting the treatment settle.</p>
+        <br />
+        <button class="btn-ghost">Explore Ode Spa Treatments <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial-section">
+    <span class="quote-mark">"</span>
+    <blockquote>I have stayed at palaces in Udaipur. Tiger Hills is different. It doesn't perform luxury. It simply is what it is — and that is the most luxurious thing I've experienced in India.</blockquote>
+    <cite>Arjun M. &nbsp;·&nbsp; Bengaluru &nbsp;·&nbsp; Stayed 3 nights</cite>
+  </section>
+
+  <section class="detail-cta">
+    <p class="label">Begin Your Restoration</p>
+    <h2>Tiger Hills is<br><em>calling</em> you home.</h2>
+    <div class="cta-btns">
+      <button class="btn-solid">Reserve Your Stay</button>
+      <button class="btn-light">Speak to a Retreat Advisor</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="logo">Ridhira Retreats</p>
+        <p>Where you don't just stay.<br>You restore.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Retreats</h4>
+        <a href="#" onclick="showPage('casa')">Casa De Mello, Goa</a>
+        <a href="#" onclick="showPage('tigerhills')">Tiger Hills, Udaipur</a>
+        <a href="#" onclick="showPage('karovi')">Karovi, Udaipur</a>
+      </div>
+      <div class="footer-col">
+        <h4>Experiences</h4>
+        <a href="#">Wellness Programs</a>
+        <a href="#">Ode Spa</a>
+        <a href="#">Ayurveda</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Ridhira Group of Companies. All rights reserved.</p>
+      <p>Privacy Policy &nbsp;·&nbsp; Terms of Use</p>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- PAGE: KAROVI                                   -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-karovi">
+  <button class="back-btn" onclick="showPage('home')">← All Retreats</button>
+
+  <div class="detail-hero">
+    <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=1600&q=85" alt="Karovi Udaipur" />
+    <div class="detail-hero-overlay"></div>
+    <div class="detail-hero-content">
+      <p class="eyebrow">Udaipur, Rajasthan &nbsp;·&nbsp; Ancient Haveli Estate</p>
+      <h1>Karovi</h1>
+      <p class="tagline">The furthest you can get. The closest you will feel.</p>
+      <div class="hero-btns">
+        <button class="btn-solid">Reserve Your Stay</button>
+        <button class="btn-light">View Experiences</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="story-section">
+    <div class="story-text">
+      <p class="label">The Retreat</p>
+      <h2>A Rajput estate<br>that time chose<br>to <em>leave alone.</em></h2>
+      <p>Karovi is Ridhira's most secluded retreat — a centuries-old Rajput haveli set within a private forest outside Udaipur. Ancient banyan trees whose roots predate the haveli. Dry-stone walls. A well that still draws water from the same aquifer it always has.</p>
+      <p>There are eight rooms here. No pool. No gym. No concierge activities board. What Karovi offers instead is rarer: genuine undisturbed silence, clean forest air, and the slow, deliberate pace that deep restoration actually requires.</p>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">8<span class="unit"> Rooms</span></div>
+          <div class="desc">Only 8 Guests at a time</div>
+        </div>
+        <div class="stat">
+          <div class="num">12<span class="unit"> Acres</span></div>
+          <div class="desc">Private Forest Estate</div>
+        </div>
+        <div class="stat">
+          <div class="num">400+<span class="unit"> Yrs</span></div>
+          <div class="desc">Haveli Heritage</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-visual">
+      <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=700&q=80" alt="Karovi haveli" />
+      <div class="story-visual-accent"></div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="experiences-section">
+    <div class="exp-header">
+      <div>
+        <p class="label">What Awaits</p>
+        <h2>Slower.<br><em>Deeper. Truer.</em></h2>
+      </div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80" alt="Panchakarma" />
+        <div class="exp-card-body">
+          <p class="exp-num">01</p>
+          <h3>Panchakarma Detox</h3>
+          <p>A structured 5–21 day Ayurvedic detox programme designed for genuine cellular restoration. Karovi is one of the few retreat environments in India suitable for a full Panchakarma protocol.</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=600&q=80" alt="Forest silence" />
+        <div class="exp-card-body">
+          <p class="exp-num">02</p>
+          <h3>Maun — The Practice of Silence</h3>
+          <p>Guided programmes in conscious silence. Not monastic austerity — but a structured, supported practice of turning inward, available for half-days, full-days, or entire stays.</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600&q=80" alt="Longevity protocols" />
+        <div class="exp-card-body">
+          <p class="exp-num">03</p>
+          <h3>Longevity Protocols</h3>
+          <p>Integrated with Ode Life — Ridhira's longevity membership programme — Karovi offers biomarker assessments, Ayurgenomics consultations, and personalised longevity planning for Ode Life members.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rooms-section">
+    <div class="rooms-header">
+      <p class="label">Accommodation</p>
+      <h2>Eight Rooms.<br>One Private World.</h2>
+    </div>
+    <div class="rooms-scroll">
+
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=700&q=80" alt="Haveli Suite" />
+        <div class="room-info">
+          <p class="room-type">Heritage Suite</p>
+          <h3>The Zenana Suite</h3>
+          <p>Once the women's quarters of the haveli, the Zenana Suite has original jali windows, a private courtyard with a tulsi garden, and a therapeutic copper bathtub.</p>
+          <div class="room-amenities">
+            <span class="amenity">Private Courtyard</span>
+            <span class="amenity">Jali Windows</span>
+            <span class="amenity">Copper Bathtub</span>
+          </div>
+          <p class="price">₹38,000 <span>per night, all meals incl.</span></p>
+          <button class="btn-book-room">Book</button>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=700&q=80" alt="Banyan Room" />
+        <div class="room-info">
+          <p class="room-type">Forest Room</p>
+          <h3>The Banyan Room</h3>
+          <p>Built around — and partially supported by — the roots of a 200-year-old banyan tree. Earthen walls, mud plaster, and a sleeping porch that faces the oldest part of the forest.</p>
+          <div class="room-amenities">
+            <span class="amenity">Living Banyan</span>
+            <span class="amenity">Earthen Walls</span>
+            <span class="amenity">Forest Porch</span>
+          </div>
+          <p class="price">₹26,000 <span>per night, all meals incl.</span></p>
+          <button class="btn-book-room">Book</button>
+        </div>
+      </div>
+
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=700&q=80" alt="Stone Cottage" />
+        <div class="room-info">
+          <p class="room-type">Restoration Room</p>
+          <h3>The Stone Cell</h3>
+          <p>The most austere room at Karovi, and — its guests tell us — the most transformative. One window. One bed. One view of the forest. Designed for those doing Panchakarma or Maun practice.</p>
+          <div class="room-amenities">
+            <span class="amenity">Meditation Mat</span>
+            <span class="amenity">Forest View</span>
+            <span class="amenity">No Screens</span>
+          </div>
+          <p class="price">₹18,000 <span>per night, all meals incl.</span></p>
+          <button class="btn-book-room">Book</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="wellness-section">
+    <div class="wellness-inner">
+      <div class="wellness-images">
+        <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=700&q=80" alt="Ode Spa Karovi" />
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400&q=80" alt="Treatment" />
+        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=400&q=80" alt="Forest wellness" />
+      </div>
+      <div class="story-text">
+        <p class="label">Wellness & Longevity</p>
+        <h2><em>Ode Spa</em> meets<br>Ode Life at Karovi</h2>
+        <p>Karovi is the only Ridhira property where Ode Spa and Ode Life — Ridhira's longevity membership programme — are fully integrated. Ode Life members can access biomarker panels, Ayurgenomics consultations, and AI-assisted health passport updates during their stay.</p>
+        <p>For non-members, Karovi offers Ode Spa's full Panchakarma-adjacent wellness programmes — designed for those who want more than relaxation. More than a spa holiday. Something that actually changes how they feel six months later.</p>
+        <br />
+        <button class="btn-ghost">Discover Ode Life Membership <span class="arrow">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial-section">
+    <span class="quote-mark">"</span>
+    <blockquote>Karovi is not for everyone. It is for the version of you that is ready to stop performing wellness and start experiencing it. I arrived with a packed schedule of goals. I left having forgotten why I needed them.</blockquote>
+    <cite>Rohan K. &nbsp;·&nbsp; Delhi &nbsp;·&nbsp; 7-night Panchakarma Stay</cite>
+  </section>
+
+  <section class="detail-cta">
+    <p class="label">Begin Your Restoration</p>
+    <h2>Some places change you.<br><em>Karovi is one of them.</em></h2>
+    <div class="cta-btns">
+      <button class="btn-solid">Reserve Your Stay</button>
+      <button class="btn-light">Speak to a Retreat Advisor</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <p class="logo">Ridhira Retreats</p>
+        <p>Where you don't just stay.<br>You restore.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Retreats</h4>
+        <a href="#" onclick="showPage('casa')">Casa De Mello, Goa</a>
+        <a href="#" onclick="showPage('tigerhills')">Tiger Hills, Udaipur</a>
+        <a href="#" onclick="showPage('karovi')">Karovi, Udaipur</a>
+      </div>
+      <div class="footer-col">
+        <h4>Experiences</h4>
+        <a href="#">Wellness Programs</a>
+        <a href="#">Ode Spa</a>
+        <a href="#">Ode Life</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">Contact Us</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Ridhira Group of Companies. All rights reserved.</p>
+      <p>Privacy Policy &nbsp;·&nbsp; Terms of Use</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* ── PAGE ROUTING ────────────────────────────────── */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const pageId = id === 'home' ? 'page-home' :
+                 id === 'casa' ? 'page-casa' :
+                 id === 'tigerhills' ? 'page-tigerhills' :
+                 id === 'karovi' ? 'page-karovi' : 'page-home';
+  const el = document.getElementById(pageId);
+  if (el) {
+    el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  requestAnimationFrame(updateNavState);
+}
+
+/* ── NAV TRANSPARENCY ON HERO ──────────────────── */
+const heroSection = document.getElementById('hero-video-section');
+
+function updateNavState() {
+  if (!heroSection) return;
+  const activePage = document.querySelector('.page.active');
+  const isHome = activePage && activePage.id === 'page-home';
+  if (!isHome) {
+    document.body.classList.remove('hero-visible');
+    return;
+  }
+  const scrollY = window.scrollY;
+  const heroH  = heroSection.offsetHeight;
+  const threshold = heroH * 0.6;
+  if (scrollY < threshold) {
+    document.body.classList.add('hero-visible');
+  } else {
+    document.body.classList.remove('hero-visible');
+  }
+}
+
+window.addEventListener('scroll', updateNavState, { passive: true });
+updateNavState();
+
+/* ── PARALLAX ── */
+const heroVideo = document.getElementById('hero-bg-video');
+const heroImg   = document.getElementById('hero-fallback-img');
+
+function applyParallax() {
+  const activePage = document.querySelector('.page.active');
+  if (!activePage || activePage.id !== 'page-home') return;
+  const scrollY = window.scrollY;
+  const maxScroll = heroSection ? heroSection.offsetHeight : 0;
+  if (scrollY > maxScroll) return;
+  const offset = scrollY * 0.38;
+  if (heroVideo && heroVideo.style.display !== 'none') {
+    heroVideo.style.transform = `scale(1) translateY(${offset}px)`;
+  }
+  if (heroImg) {
+    heroImg.style.transform = `translateY(${offset}px)`;
+  }
+}
+
+window.addEventListener('scroll', applyParallax, { passive: true });
+
+/* ── LAZY VIDEO LOAD ── */
+function initHeroVideo() {
+  const video = document.getElementById('hero-bg-video');
+  if (!video) return;
+  if (window.matchMedia('(max-width: 768px)').matches) return;
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      video.load();
+      video.play().catch(() => {});
+    }, { timeout: 1500 });
+  } else {
+    setTimeout(() => {
+      video.load();
+      video.play().catch(() => {});
+    }, 400);
+  }
+}
+
+window.addEventListener('load', initHeroVideo);
+
+/* ── INTERSECTION OBSERVER ── */
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.story-section, .rooms-section, .testimonial-section').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+  obs.observe(el);
+});
+</script>
+<script src="EXPERIENCES.JS"></script>
+</body>
+</html>
